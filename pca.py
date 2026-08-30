@@ -25,15 +25,16 @@ X = countries.values
 
 # Sample Mean Vector
 mu = (1/n) * X.T @ np.ones((n,1))
-print('Mean Vector: ')
-print(pd.DataFrame(mu, index = countries.columns))
+print('\nMean Vector: ')
+print(pd.DataFrame(mu, index = countries.columns, columns = ['Mean']).to_markdown(tablefmt="grid"))
 
 # Sample Covariance Matrix (S)
 Q = np.ones((n, 1)) @ mu.T
 S = (1/(n-1)) * (X - Q).T @  (X - Q)
 
 print('\nCovariance Matrix:')
-pd.DataFrame(S, index = countries.columns, columns = countries.columns)
+print(pd.DataFrame(S, index = countries.columns, columns = countries.columns).to_markdown(tablefmt="grid"))
+print()
 
 # Sample Correlation Matrix (R)
 V = np.sqrt(np.diag(np.diag(S)))
@@ -53,6 +54,11 @@ corr_eigen_vectors = corr_eigen_vectors[:, sorted_indices]
 total_variance = sum(corr_eigen_values)
 total_variance
 
+print('\nCorrelation Matrix:')
+print(pd.DataFrame(R, index = countries.columns, columns = countries.columns).to_markdown(tablefmt="grid"))
+print()
+
+print('Proportions of Variance captured by each Principal Component:')
 for i in range(p):
     print(f'PC{i+1} : {100 * corr_eigen_values[i] / total_variance:.5f}%')
 
@@ -60,10 +66,23 @@ explained_variance = 100 * corr_eigen_values / total_variance
 print(f'\nPC1, PC2 & PC3 % of Explained Variance: {sum(explained_variance[0:3]):.5f}%')
 print(f'PC1, PC2 & PC3 % of lost variance: {100 - sum(explained_variance[0:3]):.5f}%\n')
 
+print('Linear Comnbinations (Unadjusted):')
+
 for i in range(3):
     print(f'PC{i+1} = ', end = '')
     for j in range(p):
-        print(f'{corr_eigen_vectors[j][i]:.4f} * X{j+1} ', end = '')
+        print(f'{corr_eigen_vectors[j][i]:.4f} * Z{j+1} ', end = '')
+        if (j != p - 1):
+            print('+ ', end = '')
+    print()
+
+corr_eigen_vectors[:, 0:2] *= -1
+
+print('\nLinear Comnbinations (Adjusted):')
+for i in range(3):
+    print(f'PC{i+1} = ', end = '')
+    for j in range(p):
+        print(f'{corr_eigen_vectors[j][i]:.4f} * Z{j+1} ', end = '')
         if (j != p - 1):
             print('+ ', end = '')
     print()
