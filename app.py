@@ -79,10 +79,10 @@ with tab1:
     st.markdown('This will make each entry of $\mu$ corresponds to the mean of each column. Then we define $Q$ as ')
     st.latex(r'Q = \bf{1}_n \mu^T')
     st.markdown(r'where $Q$ is an $n \times p$ matrix and each column contains the repeated mean of a variable. Our centered matrix will therefore correspond to $X - Q$.')
-    st.markdown('Next we compute the covariance and correlation matrices, $S$ and $R$ with')
-    st.latex(r'S = \frac{1}{n} (X - Q)^T (X - Q)')
-    st.latex(r'V = \text{diag}({\sqrt{(S_{ii}})})')
-    st.markdown('where $V$ is a diagonal matrix that extracts the diagonal entries of $S$ and square roots them. Then, we find the standardised data matrix $Z$ by')
+    st.markdown('Next we compute the covariance and correlation matrices, $\Sigma$ and $R$ with')
+    st.latex(r'\Sigma = \frac{1}{n} (X - Q)^T (X - Q)')
+    st.latex(r'V = \text{diag}({\sqrt{(\Sigma_{ii}})})')
+    st.markdown('where $V$ is a diagonal matrix that extracts the diagonal entries of $\Sigma$ and square roots them. Then, we find the standardised data matrix $Z$ by')
     st.latex(r'Z = (X - Q) V^{-1}')    
     st.latex(r'R = V^{-1} S V^{-1} = \frac{1}{n}Z^T Z')
 
@@ -179,7 +179,7 @@ with tab3:
 
     st.text('We assume the test statistic follows a Chi-Square Distribution with the following degrees of freedom being the amount of unique pairwise correlations:', text_alignment='center')
 
-    st.latex(r' \chi^2_{ts} = - \left( n - 1 - \frac{2p + 5}{6} \right) \ln(\vert{}R\vert{}) ')
+    st.latex(r' \chi^2_{ts} = - \left( n - 1 - \frac{2p + 5}{6} \right) \ln(\vert{}\hat{R}\vert{}) ')
     st.latex(r' df = \frac{p(p - 1)}{2} = 36')
 
     st.divider()
