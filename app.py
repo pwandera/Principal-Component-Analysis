@@ -91,11 +91,11 @@ with tab1:
     st.markdown(r'where $\Lambda \in \R^{p \times p}$ contains the eigenvalues that represent total variance along corresponding eigenvectors and $U \in \R^{p \times p}$ containts orthonormal eigenvectors so $U^T U = I$.')
 
     st.markdown('We then sort $\Lambda$ and $U$ respectively according to magnitude of eigenvalues and then out of the the $p$ columns of $U$ we shall pick $k$ to project the standardized data matrix onto.')
-    st.markdown('Our output data matrix $P$ is thus defined as:')
-    st.latex(r'P = Z U_k \in \R^{n \times k}')
+    st.markdown('Our output data matrix $Y$ is thus defined as:')
+    st.latex(r'Y = Z U_k \in \R^{n \times k}')
     st.latex(r'k \le p')
-    st.markdown(r"$p_{ij}$ will contain a linear combination of $z_{i}$ (the ith country's variables) weighted by $u_{j}$ (the jth eigenvector). In other words,")
-    st.latex(r'p_{ij} = z_i^T u_j')
+    st.markdown(r"$y_{ij}$ will contain a linear combination of $z_{i}$ (the ith country's variables) weighted by $u_{j}$ (the jth eigenvector). In other words,")
+    st.latex(r'y_{ij} = z_i^T u_j')
 
 # 2. Data Overview Tab
 with tab2:
@@ -159,8 +159,9 @@ with tab3:
     st.header("Bartlett's Test for Sphericity")
     st.markdown("""
         While the Principal Component Algorithm does not need any assumptions of your data following a multivariate distribution, if we make this assumption, we can determine if starting the PCA is actually beneficial.
-                
         The premise of Maurice Bartlett's test for Sphericity is to check if the variables in your data matrix are actually correlated. This means that we are testing whether the correlation matrix of the data is actually an identity matrix with its off-diagonals (correlations) beiong 0s.
+        
+        Note: A statistical test is not actually necessary for this scenario since the dataset of countries is not a sample but a population. I still conducted this test just to showcase how it could supplement the analysis assuming the data were a sample.
     """)
 
     st.subheader("Assumptions of Bartlett's test:")
