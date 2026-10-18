@@ -1,6 +1,6 @@
 streamlit
 pandas==2.3.3
-scipy==1.16.3
+scipy
 numpy==2.2.6
 matplotlib
 seaborn
