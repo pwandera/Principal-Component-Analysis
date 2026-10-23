@@ -108,7 +108,7 @@ with tab2:
     st.dataframe(descriptions, hide_index=True)
 
     st.divider()
-    st.header('Bi-variate Plot of Columns', text_alignment="center")
+    st.header('Bivariate Plot of Columns', text_alignment="center")
     
     fig = sns.pairplot(countries, kind='scatter', corner=True, height=2.5, aspect = 1.2)
     st.set_page_config(layout="wide")
@@ -408,6 +408,10 @@ with tab5:
         st.subheader('Bivariate Plot of Projected Data', text_alignment="center")
         fig = sns.pairplot(pairplot_data, kind='scatter', corner=True, hue='Highlight', palette = {'Other Countries': 'steelblue', 'Nigeria': 'red', 'Singapore': 'orange'})
         st.pyplot(fig)
+
+    st.markdown('We can compare this plot with the original bivariate plots. We can see that our new variabels are centered at $0$ and, more importantly, they are approximately uncorrelated with each other. In the original plot we ' \
+                'could not look at a plot between 2 variables without worrying about the effects of the other 7. However with the PCA outputs, we can do this since the eigenvectors we mapped our original data onto are ' \
+                'orthogonal')
 
     st.divider()
     st.subheader("Key Takeaways")
